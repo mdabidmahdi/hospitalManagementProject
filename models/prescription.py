@@ -7,3 +7,4 @@ class Prescription:
         self.dosage = dosage
         self.directions = directions
         self.date = date
+        
