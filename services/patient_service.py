@@ -5,11 +5,22 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
 PATIENT_DATA_FILE = BASE_DIR/ "data"/"patients.json"
+patients = []
+def patient_id_exists(patient_id):
+    with open(PATIENT_DATA_FILE, "r") as file:
+        patients = json.load(file)
+        for patient in patients:
+            if patient["patient_id"] == patient_id:
+                 return True
+            return False
 
-def patient_id_gen():
+def patient_id_gen(patient_id):
+    while True:
         num_gen = random.randint(1,10000)
         patient_id = ("P" + str(num_gen))
-        return patient_id  
+        
+        if not patient_id_exists(patient_id):
+            return patient_id  
 
 
 def patient_reg():
