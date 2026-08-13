@@ -1,3 +1,6 @@
+from services.patient_service import patient_menu
+
+
 print("===================================")
 print("HOSPITAL MANAGEMENT SYSTEM")
 print("===================================")
@@ -14,7 +17,8 @@ while True:
 
     match user_input:
         case 1:
-            print("Loading....")
+            patient_menu()
+            continue
         case 2:
             print("Loading....")
         case 3:

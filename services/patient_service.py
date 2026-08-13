@@ -1,4 +1,17 @@
+import random
+import json
 from models.patient import Patient
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent.parent
+PATIENT_DATA_FILE = BASE_DIR/ "data"/"patients.json"
+
+def patient_id_gen():
+        num_gen = random.randint(1,10000)
+        patient_id = ("P" + str(num_gen))
+        return patient_id  
+
+
 def patient_reg():
     first_name = input("Please enter the patient's first name: ")
     last_name = input("Please enter the patient's first name: ")
@@ -14,6 +27,14 @@ def patient_reg():
             continue
     phone = input("Please enter the patient's phone number: ")     
     address = input("Please enter the patient's address: ")
+
+    patient_id = patient_id_gen()
+    new_patient = Patient(patient_id, first_name, last_name, dob, gender, phone, address)
+    with open(PATIENT_DATA_FILE, "a") as file:
+        json.dump(new_patient.to_dict(), file, indent=4)
+    print("New patient has been registered!")
+    
+
     
 
 
@@ -35,7 +56,8 @@ def patient_menu():
 
         match user_input:
             case 1:
-                print("Loading....")
+                patient_reg()
+                continue
             case 2:
                 print("Loading....")
             case 3:

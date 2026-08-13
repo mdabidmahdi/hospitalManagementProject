@@ -1,6 +1,8 @@
 from datetime import date
+
 class Patient:
     def __init__(self, patient_id, first_name, last_name, dob, gender, phone, address):
+
         self.patient_id = patient_id
         self.first_name = first_name
         self.last_name = last_name
@@ -20,7 +22,14 @@ class Patient:
         age = (current_date.year - int(birth_year) - 1) + has_had_birthday
         return age
 
-
-
-Abid = Patient("P1001", "Mohammad", "Mahdi", "10/14/2002", "M", "929-494-4056", "88-22 186th street, Hollis, NY-11423")
-print(Abid.age)
+    def to_dict(self):
+        return{
+            "patient_id": self.patient_id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "dob": self.dob,
+            "gender":self.gender,
+            "phone": self.phone,
+            "age": self.age,
+            "address": self.address
+        }
